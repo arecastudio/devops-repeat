@@ -45,5 +45,13 @@ end
 Vagrant.configure('2') do |config|
   config.vm.synced_folder '.', '/vagrant', type: 'rsync'
 end
+```
 
+After that, since we only need the `*.img` file, we need to convert it into qcow2 to be applied on `kvm` environment
+```
+user@linux:~/Downloads/extract$ qemu-img convert  -f raw -O qcow2  box_0.img alma9-disk.qcow2
+user@linux:~/Downloads/extract$ ls *.qcow2
+alma9-disk.qcow2
+user@linux:~/Downloads/extract$ ls *.qcow2|xargs -n1 -I{} du -sh {} 2>/dev/null 
+529M    alma9-disk.qcow2
 ```
