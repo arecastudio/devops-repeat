@@ -47,6 +47,21 @@ Vagrant.configure('2') do |config|
 end
 ```
 
+Set the root password befor install process
+```
+user@linux:~/Downloads/ext$ mv box_0.img alma9-disk.img 
+user@linux:~/Downloads/ext$ mv alma9-disk.img ~/qcow2s/
+user@linux:~/Downloads/ext$ virt-customize -a ~/qcow2s/alma9-disk.img --root-password password:toor
+[   0.0] Examining the guest ...
+[   9.4] Setting a random seed
+[   9.4] Setting the machine ID in /etc/machine-id
+[   9.4] Setting passwords
+[  10.4] SELinux relabelling
+[  11.9] Finishing off
+```
+
+
+# Not Needed anymore
 After that, since we only need the `*.img` file, we need to convert it into qcow2 to be applied on `kvm` environment
 ```
 user@linux:~/Downloads/extract$ qemu-img convert  -f raw -O qcow2  box_0.img alma9-disk.qcow2
