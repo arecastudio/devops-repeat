@@ -60,4 +60,11 @@ user@linux:~/Downloads/extract$ ls *.qcow2|xargs -n1 -I{} du -sh {} 2>/dev/null
 
 ```
 user@linux:~$ virt-install --name alma9-vm --memory 4048 --vcpus 2 --disk path=/home/tux/qcow2s/alma9-disk.qcow2 --import --os-variant almalinux9 --network bridge=virbr0,model=virtio
-``
+```
+
+### To remove the VM
+```
+user@linux:~$ virsh shutdown alma9-vm
+user@linux:~$ virsh undefine alma9-vm --remove-all-storage
+
+```
