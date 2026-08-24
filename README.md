@@ -55,3 +55,9 @@ alma9-disk.qcow2
 user@linux:~/Downloads/extract$ ls *.qcow2|xargs -n1 -I{} du -sh {} 2>/dev/null 
 529M    alma9-disk.qcow2
 ```
+
+### Install the VM
+
+```
+user@linux:~$ virt-install --name alma9-vm --memory 4048 --vcpus 2 --disk path=/home/tux/qcow2s/alma9-disk.qcow2 --import --os-variant almalinux9 --network bridge=virbr0,model=virtio
+``
