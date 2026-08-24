@@ -74,7 +74,12 @@ user@linux:~/Downloads/extract$ ls *.qcow2|xargs -n1 -I{} du -sh {} 2>/dev/null
 ### Install the VM
 
 ```
-user@linux:~$ virt-install --name alma9-vm --memory 4048 --vcpus 2 --disk path=/home/user/qcow2s/alma9-disk.qcow2 --import --os-variant almalinux9 --network bridge=virbr0,model=virtio
+user@linux:$ virt-install --name alma9-vm --memory 4048 --vcpus 2 --disk path=/home/user/qcow2s/alma9-disk.img,bus=virtio,format=img --import --os-variant almalinux9 --network bridge=virbr0,model=virtio
+
+Starting install...
+Creating domain...                                                                                                                                                     |         00:00:00     
+Running graphical console command: virt-viewer --connect qemu:///system --wait alma9-vm
+
 ```
 
 ### To remove the VM
