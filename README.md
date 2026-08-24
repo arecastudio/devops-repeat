@@ -59,12 +59,23 @@ user@linux:~/Downloads/extract$ ls *.qcow2|xargs -n1 -I{} du -sh {} 2>/dev/null
 ### Install the VM
 
 ```
-user@linux:~$ virt-install --name alma9-vm --memory 4048 --vcpus 2 --disk path=/home/tux/qcow2s/alma9-disk.qcow2 --import --os-variant almalinux9 --network bridge=virbr0,model=virtio
+user@linux:~$ virt-install --name alma9-vm --memory 4048 --vcpus 2 --disk path=/home/user/qcow2s/alma9-disk.qcow2 --import --os-variant almalinux9 --network bridge=virbr0,model=virtio
 ```
 
 ### To remove the VM
 ```
 user@linux:~$ virsh shutdown alma9-vm
 user@linux:~$ virsh undefine alma9-vm --remove-all-storage
+
+```
+
+#### In case of NVRAM uses
+```
+user@linux:~$ virsh undefine ubuntu-noble-vm --remove-all-storage
+error: Failed to undefine domain 'ubuntu-noble-vm'
+error: Requested operation is not valid: cannot undefine domain with nvram
+
+user@linux:~$ virsh undefine --nvram ubuntu-noble-vm
+Domain 'ubuntu-noble-vm' has been undefined
 
 ```
